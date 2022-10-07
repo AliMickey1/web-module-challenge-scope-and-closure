@@ -30,11 +30,14 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+  One is using a closure and the other a simple counter function
   
   2. Which of the two uses a closure? How can you tell?
+  counter1 is using the closure.  I know because it has a nested return function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     Counter1 will start at 0 everytime is is called.  Counter2 will continue to add on.
 */
 
 // counter1 code
@@ -64,9 +67,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  var pointsScored = Math.floor(Math.random() * 3);
+  return pointsScored;
 }
+console.log(inning());
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -83,9 +88,25 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, inningNumber)
+{
+  let homeScore = 0;
+  let currentHomeScore = 0;
+  let awayScore = 0;
+  let currentAwayScore = 0;
+
+  for(let i = 0; i < inningNumber; i++)
+    {
+      homeScore = inning() + homeScore;
+      awayScore = inning() + awayScore;
+    }
+        return {
+      Home: homeScore,
+      Away: awayScore
+    }
+ 
 }
+console.log(finalScore(inning, 9));
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,11 +122,13 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
-}
-
+function getInningScore(inning) {
+  return {
+        Home: inning(),
+        Away: inning()
+      }
+  }
+  console.log(getInningScore(inning));
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
